@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quantity: 1
+  ticket_type: one
+  cart: 
+  g: MyString
+  model: MyString
+  Cart_Item: MyString
+  quantity: 1
+  ticket_type: one
+  cart: one
+
+two:
+  quantity: 1
+  ticket_type: two
+  cart: 
+  g: MyString
+  model: MyString
+  Cart_Item: MyString
+  quantity: 1
+  ticket_type: two
+  cart: two

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215104433) do
+ActiveRecord::Schema.define(version: 20161027153100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "quantity"
+    t.integer  "ticket_type_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+    t.index ["ticket_type_id"], name: "index_cart_items_on_ticket_type_id", using: :btree
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "session_id"
+    t.integer  "user_id"
+    t.datetime "checked_out_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -32,10 +50,9 @@ ActiveRecord::Schema.define(version: 20151215104433) do
     t.string   "name"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["category_id"], name: "index_events_on_category_id", using: :btree
+    t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
-
-  add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
-  add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
@@ -50,9 +67,17 @@ ActiveRecord::Schema.define(version: 20151215104433) do
     t.integer  "max_quantity"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
   end
 
-  add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["email"], name: "index_users_on_email", using: :btree
+  end
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
@@ -60,10 +85,12 @@ ActiveRecord::Schema.define(version: 20151215104433) do
     t.integer  "region_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["region_id"], name: "index_venues_on_region_id", using: :btree
   end
 
-  add_index "venues", ["region_id"], name: "index_venues_on_region_id", using: :btree
-
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "ticket_types"
+  add_foreign_key "carts", "users"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "venues"
   add_foreign_key "ticket_types", "events"
