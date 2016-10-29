@@ -1,5 +1,6 @@
 class CartItemController < ApplicationController
- def add_to_cart
+	
+	def create
     @cart_item = CartItem.new cart_item_param
     @cart_item.cart = current_order
     if @cart_item.save!
@@ -7,9 +8,6 @@ class CartItemController < ApplicationController
     else
     	raise "can not add to cart"
     end
-  end
-	
-	def create
 	end
   
 	private

@@ -21,6 +21,9 @@
 
     </div>
   </div>
+	
+	<%= form_tag new_event_ticket_path, :method => 'post' do %>
+	
   <div class="row">
     <div class="col-md-11 col-md-offset-1">  
       <table class="table">
@@ -34,15 +37,15 @@
           <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
           <td> <%= select_tag('quantity', options_for_select(0..10))%></td>
         </tr>
-        <% end %> 
-      </table>
+				<% end %>
+			</table>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2 col-md-offset-5">
-
 			<%= submit_tag "Buy", class: "btn btn-success btn-lg btn-block"%>
-    </div>
-  <div>
+  	</div>
+  </div>
+	<% end %>
 </div>  
 

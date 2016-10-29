@@ -6,8 +6,9 @@
   <%= @user.errors.full_messages.to_sentence%>
   </div>
   <%end%>
+
 	<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
-	<%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+	<%= f.email_field :email, placeholder: "Email", class: "form-control" %>
 	<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
 	<%= f.submit  class: "btn btn-success" %>
 

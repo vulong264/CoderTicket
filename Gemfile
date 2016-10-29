@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
+
+#photo uploader
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 #Password encryption
 gem 'bcrypt', '~> 3.1.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
