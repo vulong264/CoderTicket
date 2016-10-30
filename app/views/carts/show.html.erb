@@ -3,13 +3,13 @@
     <div class="col-xs-12 col-md-11 col-md-offset-1">
       <h3> Client Info </h3>
       <div class="venue-details">
-       <%= @user.name %>
+       <%= current_user.name %>
        <br/>
-       <%= @user.email %>
+       <%= current_user.email %>
       </div>
 			<h3>Total Amount</h3> 
       <div class="venue-details"> 
-        Put Amount here 
+				TOTAL PRICE GOES HERE
       </div>
 			<%= link_to checkout_cart_path, :method=> :post do %>
 				<button class='btn btn-lg btn-block btn-info'> CHECK OUT </button>
@@ -17,9 +17,9 @@
     </div>
   </div>
 
-	<% if @cart.errors.present?%>
+	<% if current_cart.errors.present?%>
 	<div class="alert alert-danger">
-  <%= @cart.errors.full_messages.to_sentence%>
+  <%= current_cart.errors.full_messages.to_sentence%>
   </div>
   <%end%>
 
@@ -31,7 +31,7 @@
         <th> Unit Price </th>
         <th> Quantity </th>
       	<th> Total Price </th>
-        <% @cart.cart_item.each do |cartitem| %>
+        <% current_cart.cart_item.each do |cartitem| %>
         <tr>
 					<td> <%= cartitem.ticket_type.event.name %> </td>
           <td> <%= cartitem.ticket_type.name %> </td>

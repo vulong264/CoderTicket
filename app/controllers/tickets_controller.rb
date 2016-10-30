@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
-  def new
+  def show
     @event = Event.find(params[:event_id])
-		@items_to_add = {}
+		render 'show'
   end
 end

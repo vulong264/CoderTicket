@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 	mount_uploader :hero_image_url, PhotoUploader
 	def self.upcoming
-		where("starts_at >= ?", Date.current)
+		where("starts_at >= ? AND published_at is not null", Date.current)
 	end
 
 	def have_enough_ticket_types?

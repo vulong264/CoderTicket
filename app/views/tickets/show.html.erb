@@ -32,13 +32,26 @@
         <th> Quantity </th>
 				<%#<th> # Ticket Left </th>%>
       
+        <%#<% @event.ticket_types.each do |type| %>
+        <%#<tr>%>
+					<%#<%= form_for type, url: {:controller=>'cart_item', :action=>'new', :method=>'get'} do |f| %>
+          <%#<td> <%= type.name %> </td>
+          <%#<td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %></td> 
+					<%#<td> <%= f.select :quantity,		options_for_select(0..10)	%></td>
+					<%#<td> <%= f.hidden_field :ticket_type_id, value:type.id %> </td>
+					<%#<td> <%= f.hidden_field :event_id, value:type.event_id %> </td>
+					<%#<td> <%= f.submit "Add to cart", class: "btn btn_secondary"%>
+					<%#</td>%>
+					<%#<% end %>
+        <%#</tr>%>
+				<%#<% end %>
+
         <% @event.ticket_types.each do |type| %>
         <tr>
-					<%= form_for type, url: {:controller=>'cart_item', :action=>'new', :method=>'get'} do |f| %>
+					<%= form_for current_cart do |f| %>
           <td> <%= type.name %> </td>
           <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
 					<td> <%= f.select :quantity,		options_for_select(0..10)	%></td>
-					<%#<td> <%= type.max_quantity	%>
 					<td> <%= f.hidden_field :ticket_type_id, value:type.id %> </td>
 					<td> <%= f.hidden_field :event_id, value:type.event_id %> </td>
 					<td> <%= f.submit "Add to cart", class: "btn btn_secondary"%>
@@ -46,6 +59,7 @@
 					<% end %>
         </tr>
 				<% end %>
+
 			</table>
     </div>
   </div>

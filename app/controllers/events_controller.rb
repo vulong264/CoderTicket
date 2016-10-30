@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def index
 		if params[:search]
-			@events = Event.where("name like ? ","%"+params[:search]+"%")
+			@events = Event.where("name like ? AND published_at is not null","%"+params[:search]+"%")
 		else
     	@events = Event.upcoming
 		end

@@ -17,26 +17,27 @@
               <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0) %>
             </div>
           </div>
-          
-        <% end %>
-        <%= link_to new_event_ticket_path(@event) do %>
-          <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
-        <% end %>
-				<div class="clearfix"></div>
-
-
+					<% end %>
+					<div class="row">
+						<%= link_to event_ticket_path(@event) do %>
+							<button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
+						<% end %>
+					</div>
 				<% if @event.user_id == current_user.id %>
-					<%= link_to edit_event_path(@event) do %>
-						<button class='btn btn-lg btn-block btn-danger'> EDIT EVENT </button>
-					<% end %>
-					<div class="clearfix"></div>
-					<% if @event.published_at == nil && @event.have_enough_ticket_types? %>
-						<div class="clearfix"></div>
-							<%= link_to publish_event_path, :method=> :post do %>
-						<button class='btn btn-lg btn-block btn-info'> PUBLISH NOW </button>
-							<% end %>
-					<% end %>
-
+					  <div class="row">
+            	<div class="col-md-6">
+								<%= link_to edit_event_path(@event) do %>
+									<button class='btn btn-sm btn-block btn-danger'> EDIT EVENT </button>
+								<% end %>              
+            	</div>
+            <div class="col-md-6">
+								<% if @event.published_at == nil && @event.have_enough_ticket_types? %>
+									<%= link_to publish_event_path, :method=> :post do %>
+										<button class='btn btn-sm btn-block btn-info'> PUBLISH NOW </button>
+									<% end %>
+								<% end %>              
+            </div>
+          </div>
 					</br>
 					<%= form_for @event do |f|%>
 					<div class="clearfix"></div>
