@@ -71,6 +71,10 @@ The person with best test coverage will win a small present from the instructor 
 
 Describe any challenges encountered while building the app.
 
+## VIDEO
+
+![Video Walkthrough](/Assign03.gif)
+
 ## License
 
     Copyright [yyyy] [name of copyright owner]
