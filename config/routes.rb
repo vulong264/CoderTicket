@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  resources :carts
+  resources :carts do
+		member do
+			post 'checkout'
+		end
+	end
   resources :users
   root 'events#index'
 
   resources :events do
-    resources :tickets 
+    resources :tickets
 
 		member do
 			post 'publish'
@@ -17,5 +21,5 @@ Rails.application.routes.draw do
 
 	resources :sessions, only: [:new, :create]
 	delete 'logout' => 'sessions#destroy'
-	resources :cart_item, only: [:new, :create]
+	resources :cart_item
 end

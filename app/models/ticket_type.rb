@@ -1,4 +1,5 @@
 class TicketType < ActiveRecord::Base
+	attr_accessor :quantity
   belongs_to :event
 	has_many :cart_item 
 	has_many :cart, through: :cart_item

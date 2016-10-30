@@ -1,0 +1,49 @@
+<div class="container-fluid tickets-buy">
+  <div class="row tickets-header">
+    <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <h3> Client Info </h3>
+      <div class="venue-details">
+       <%= @user.name %>
+       <br/>
+       <%= @user.email %>
+      </div>
+			<h3>Total Amount</h3> 
+      <div class="venue-details"> 
+        Put Amount here 
+      </div>
+			<%= link_to checkout_cart_path, :method=> :post do %>
+				<button class='btn btn-lg btn-block btn-info'> CHECK OUT </button>
+			<% end %>
+    </div>
+  </div>
+
+	<% if @cart.errors.present?%>
+	<div class="alert alert-danger">
+  <%= @cart.errors.full_messages.to_sentence%>
+  </div>
+  <%end%>
+
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1">  
+      <table class="table">
+        <th> Event </th>
+				<th> Ticket Type </th>
+        <th> Unit Price </th>
+        <th> Quantity </th>
+      	<th> Total Price </th>
+        <% @cart.cart_item.each do |cartitem| %>
+        <tr>
+					<td> <%= cartitem.ticket_type.event.name %> </td>
+          <td> <%= cartitem.ticket_type.name %> </td>
+					<td> <%= number_to_currency(cartitem.ticket_type.price, unit: 'VND ', precision: 0) %> </td>
+          <td> <%= cartitem.quantity %> </td>
+					<td> <%= number_to_currency(cartitem.ticket_type.price * cartitem.quantity, unit: 'VND ', precision: 0) %> </td>
+        </tr>
+				<% end %>
+			</table>
+    </div>
+  </div>
+
+
+</div>  
+

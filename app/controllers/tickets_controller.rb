@@ -3,6 +3,4 @@ class TicketsController < ApplicationController
     @event = Event.find(params[:event_id])
 		@items_to_add = {}
   end
-	def add_to_cart(cart_items = {})
-	end
 end
