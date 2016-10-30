@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
-  attr_accessor :region_id,:venue_name,:venue_address
+	# scope :published, -> { where(published_at: nil) }
+	# TODO: How to make SCOPE work ????
+
+	attr_accessor :region_id,:venue_name,:venue_address,:ticket_name,:ticket_price,:ticket_max
 	belongs_to :venue
   belongs_to :category
   has_many :ticket_types	
@@ -8,5 +11,9 @@ class Event < ActiveRecord::Base
 	mount_uploader :hero_image_url, PhotoUploader
 	def self.upcoming
 		where("starts_at >= ?", Date.current)
+	end
+
+	def have_enough_ticket_types?
+		TicketType.where(event_id: id).count > 0
 	end
 end

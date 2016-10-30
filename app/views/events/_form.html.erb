@@ -1,0 +1,70 @@
+
+
+<%= form_for @event do |f|%>
+	<br>
+	<br>
+	<br>
+	<% if @event.errors.present?%>
+	<div class="alert alert-danger">
+  <%= @event.errors.full_messages.to_sentence%>
+  </div>
+  <%end%>
+  <div class="row">
+	  <div class="col-xs">
+				<div class="form-group">
+					<label for="starts_at">Starts at</label>
+					<div class="form-control"><%= f.datetime_select :starts_at %>
+					</div>
+				</div>
+		</div>
+		<div class="col-xs">
+				<div class="form-group">
+					<label for="ends_at">Ends at</label>
+					<div class="form-control"><%= f.datetime_select :ends_at %></div>
+				</div>
+		</div>
+	</div>
+				<div class="form-group">
+						<label for="region_id">Region</label>
+					<div class="form-control"><%= f.select :region_id, 
+					options_for_select(all_region.collect { |region| [region.name, region.id] },1),
+						{},
+						{ id: 'region_id'} 
+						%></div>
+				</div>
+				<div class="form-group">
+					<label for="venue_name">Venue Name</label>
+					<div class="form-control"><%= f.text_field :venue_name %></div>
+				</div>
+					<div class="form-group">
+					<label for="venue_address">Venue Address</label>
+					<div class="form-control"><%= f.text_field :venue_address %></div>
+				</div>
+				<div class="form-group">
+						<label for="category_id">Category</label>
+					<div class="form-control"><%= f.select :category_id, 
+					options_for_select(all_category.collect { |category| [category.name, category.id] },1),
+						{},
+						{ id: 'category_id' }#,:onclick => "alert('HI');" 
+						%>
+						</div>		
+				</div>
+				<div class="form-group">
+					<label for="name">Event Name</label>
+					<div class="form-control"><%= f.text_field :name %></div>
+				</div>
+				<div class="form-group">
+					<label for="extended_html_description">Description</label>
+					<div class="form-control"><%= f.text_area :extended_html_description, placeholder: "Subject"%></div>
+				</div>
+				<div class="form-group">
+					<label for="hero_image_url">Photo</label>
+					<div class="form-control"><%= f.file_field :hero_image_url %></div>
+				</div>
+
+				<div class="form-group">
+					<div class="form-control"><%= f.submit class: 'btn btn-success btn-sm'%></div>
+				</div>
+			
+    
+<% end %>

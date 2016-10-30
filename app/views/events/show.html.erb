@@ -17,11 +17,57 @@
               <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0) %>
             </div>
           </div>
-          <div class="clearfix"></div>
+          
         <% end %>
         <%= link_to new_event_ticket_path(@event) do %>
           <button class='btn btn-lg btn-block btn-danger'> BOOK NOW </button>
         <% end %>
+				<div class="clearfix"></div>
+
+
+				<% if @event.user_id == current_user.id %>
+					<%= link_to edit_event_path(@event) do %>
+						<button class='btn btn-lg btn-block btn-danger'> EDIT EVENT </button>
+					<% end %>
+					<div class="clearfix"></div>
+					<% if @event.published_at == nil && @event.have_enough_ticket_types? %>
+						<div class="clearfix"></div>
+							<%= link_to publish_event_path, :method=> :post do %>
+						<button class='btn btn-lg btn-block btn-info'> PUBLISH NOW </button>
+							<% end %>
+					<% end %>
+
+					</br>
+					<%= form_for @event do |f|%>
+					<div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-4">TICKET NAME</div>
+						<div class="col-md-6">
+              <%= f.text_field :ticket_name %>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+					<div class="row">
+            <div class="col-md-4">TICKET PRICE</div>
+						<div class="col-md-6">
+              <%= f.number_field :ticket_price %>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+					<div class="row">
+            <div class="col-md-4">QUANTITY</div>
+						<div class="col-md-6">
+              <%= f.number_field :ticket_max %>
+            </div>
+          </div>
+					</br>
+          <div class="clearfix"></div>
+		
+							<%= f.submit 'ADD TICKET', class: 'btn btn-lg btn-block btn-info'%>
+		
+					<% end%>
+					
+				<% end %>
       </div>
     </div>
     <div class="col-md-9 event-content">

@@ -18,6 +18,10 @@
 			<li class="nav-item">
 				<%= link_to "Create Event", new_event_path, class: "nav-link"  %> 
 			</li>
+			<li class="nav-item">
+				<%= link_to "My Event", mine_events_path, class: "nav-link"  %> 
+			</li>
+			
 		<% else %>
       <li class="nav-item">
 				<%= link_to "Log In", new_session_path, class: "nav-link"%>
