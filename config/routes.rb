@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 		member do
 			post 'checkout'
 		end
+
+		collection do
+			post 'add_ticket'
+		end
 	end
   resources :users
   root 'events#index'
@@ -11,7 +15,11 @@ Rails.application.routes.draw do
     resources :tickets
 
 		member do
-			post 'publish'
+			patch 'add_ticket'
+		end
+
+		member do
+			patch 'publish'
 		end
 
 		collection do

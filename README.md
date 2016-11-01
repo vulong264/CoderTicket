@@ -34,7 +34,7 @@ The person with best test coverage will win a small present from the instructor 
 * [x] Users can buy tickets to an event, choose the types of tickets, and the quantity of tickets.
 * [x] Users cannot buy more tickets than the quantity available.
 * [x] Users can only buy up to 10 of a ticket type at a time. Show a nice flash message.
-	//LONGV NOTE: MESSAGE NOT SHOWN. SOMETHING WRONG WITH MANY REDIRECT
+	
 #### Users
 
 * [x] User can sign up by providing their email, password, and name.
@@ -55,7 +55,6 @@ The person with best test coverage will win a small present from the instructor 
         * You can use `/events/mine` [collection routes](http://guides.rubyonrails.org/routing.html#adding-more-restful-actions)
 * [x] Users can edit their event after creation. But only the user who created the event can edit the event.
     * **HINT**: use a `before_action :check_event_changing_permission` to redirect users to event page with a flash error if applicable.
-		//LONGV NOTE: STILL ERROR
 ### Optional Stories
 
 * [ ] Users cannot buy tickets to events that occur in the past.

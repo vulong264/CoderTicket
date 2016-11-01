@@ -25,42 +25,42 @@
 	<%#<%= form_tag cart_item_index_path, :method => 'post' do %>
 	
   <div class="row">
-    <div class="col-md-11 col-md-offset-1">  
+    <div class="col-md-11 col-md-offset-1">
+		<%= form_for Cart.new, :url => {:controller => "carts", :action => "add_ticket"} do |cart| %>
+		
       <table class="table">
         <th> Ticket Type </th>
         <th> Unit Price </th>
         <th> Quantity </th>
 				<%#<th> # Ticket Left </th>%>
-      
         <%#<% @event.ticket_types.each do |type| %>
         <%#<tr>%>
 					<%#<%= form_for type, url: {:controller=>'cart_item', :action=>'new', :method=>'get'} do |f| %>
-          <%#<td> <%= type.name %> </td>
-          <%#<td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %></td> 
-					<%#<td> <%= f.select :quantity,		options_for_select(0..10)	%></td>
-					<%#<td> <%= f.hidden_field :ticket_type_id, value:type.id %> </td>
-					<%#<td> <%= f.hidden_field :event_id, value:type.event_id %> </td>
+          <%#<td> <%= type.name %>
+          <%#<td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %>
+					<%#<td> <%= f.select :quantity,		options_for_select(0..10)	%>
+					<%#<td> <%= f.hidden_field :ticket_type_id, value:type.id %> 
+					<%#<td> <%= f.hidden_field :event_id, value:type.event_id %> 
 					<%#<td> <%= f.submit "Add to cart", class: "btn btn_secondary"%>
 					<%#</td>%>
 					<%#<% end %>
         <%#</tr>%>
 				<%#<% end %>
-
-        <% @event.ticket_types.each do |type| %>
+					<% @ticket_types.each do |ticket_type| %>
         <tr>
-					<%= form_for current_cart do |f| %>
-          <td> <%= type.name %> </td>
-          <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-					<td> <%= f.select :quantity,		options_for_select(0..10)	%></td>
-					<td> <%= f.hidden_field :ticket_type_id, value:type.id %> </td>
-					<td> <%= f.hidden_field :event_id, value:type.event_id %> </td>
-					<td> <%= f.submit "Add to cart", class: "btn btn_secondary"%>
-					</td>
-					<% end %>
+						<%= cart.fields_for ticket_type, index: ticket_type do |ticket_type_form| %>
+						<td> <%= ticket_type.name %> </td>
+						<td> <%= number_to_currency(ticket_type.price, unit: 'VND ', precision: 0) %> </td>	
+						<%= ticket_type_form.hidden_field :id %>
+						<td> <%= ticket_type_form.number_field :quantity %></td>
+						<% end %>									
         </tr>
+					<% end %>
+			</table>
+			<%= cart.submit "Add to cart", class: "btn btn_secondary"%>
+				<%#<%= submit_tag "Add to cart", class: "btn btn_secondary"%>
 				<% end %>
 
-			</table>
     </div>
   </div>
   <div class="row">
