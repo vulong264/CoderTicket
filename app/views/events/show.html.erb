@@ -32,7 +32,7 @@
             	</div>
             <div class="col-md-6">
 								<% if @event.published_at == nil && @event.have_enough_ticket_types? %>
-									<%= link_to publish_event_path, :method=> :post do %>
+									<%= link_to publish_event_path, :method=> :patch do %>
 										<button class='btn btn-sm btn-block btn-info'> PUBLISH NOW </button>
 									<% end %>
 								<% end %>              
